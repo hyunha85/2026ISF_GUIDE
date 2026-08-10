@@ -1,0 +1,600 @@
+@charset "utf-8";
+/* ==========================================================================
+   2026 ISF Mobile Brochure - brochure.css
+   ver_3의 style.css / bootstrap.css는 건드리지 않고,
+   "슬라이드 내부 콘텐츠 표현"만 이 파일에서 새로 추가합니다.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 로컬 웹폰트 (아리따 부리 KR) - woff2로 변환하여 용량 최적화
+   -------------------------------------------------------------------------- */
+@font-face {
+	font-family: 'Arita Dotum KR';
+	src: url('../fonts/AritaDotumKR-Light.ttf') format('ttf');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Arita Dotum KR';
+	src: url('../fonts/AritaDotumKR-Medium.ttf') format('ttf');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Arita Dotum KR';
+	src: url('../fonts/AritaDotumKR-SemiBold.ttf') format('ttf');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Arita Dotum KR';
+	src: url('../fonts/AritaDotumKR-Bold.ttf') format('ttf');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. 캐러셀 비율 고정 (900 x 1638 원본 디자인 비율 유지)
+   -------------------------------------------------------------------------- */
+#carouselExampleIndicators.carousel {
+	max-width: 480px; /* 데스크톱에서 과도하게 커지는 것 방지 */
+}
+
+.brochure-scene {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 900 / 1638;
+	overflow: hidden;
+	background: #eef1f4; /* 로딩 전 배경 */
+}
+
+.brochure-scene .scene-bg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.scene-copy {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. 등장(reveal) 애니메이션
+   - Carousel이 좌우로 이동하는 도중에는 재생되지 않음(JS에서 .play로 제어)
+   - slid.bs.carousel 이후 active item에만 .play 부여
+   -------------------------------------------------------------------------- */
+.reveal {
+	opacity: 0;
+	transform: translateY(18px);
+}
+
+.carousel-item.play .reveal {
+	animation: fadeUp .8s cubic-bezier(.22,1,.36,1) var(--delay, 0s) forwards;
+}
+
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* 배경과 분리된 PNG 오브젝트(엽서/포토 등): 살짝 늦게, 아주 미세한 scale-up */
+.reveal-object {
+	opacity: 0;
+	transform: translateY(20px) scale(.97);
+}
+
+.carousel-item.play .reveal-object {
+	animation: fadeUpScale .9s cubic-bezier(.22,1,.36,1) var(--delay, 0s) forwards;
+}
+
+@keyframes fadeUpScale {
+	from {
+		opacity: 0;
+		transform: translateY(20px) scale(.97);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* scene10 내부 스크롤 카드용 reveal (IntersectionObserver가 .in-view를 부여) */
+.io-fade {
+	opacity: 0;
+	transform: translateY(16px);
+	transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
+.io-fade.in-view {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   4. 공통 텍스트 레이어 (scene마다 position/size만 재정의)
+   -------------------------------------------------------------------------- */
+.english-title {
+	position: absolute;
+	display: block;
+}
+
+.main-title {
+	/* 주의: vw는 "뷰포트" 전체 폭 기준이라 캐러셀이 max-width:480px로
+	   제한되어 있어도 PC의 넓은 브라우저 창에서는 그 넓은 뷰포트 기준으로
+	   커져버린다. 그래서 모든 폰트 크기는 반드시 clamp(최소px, 가변값, 최대px)
+	   형태로 px 상/하한선을 걸어준다. 아래 6vw는 "가변" 성분일 뿐, 실제
+	   렌더링 크기는 min~max px 범위 안에서만 움직인다. */
+	position: absolute;
+	margin: 0;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 600;
+	font-size: clamp(20px, 6vw, 28px);
+	line-height: 1.2;
+	word-break: keep-all;
+	overflow-wrap: normal;
+	letter-spacing:  -0.03rem;
+}
+
+.body-copy {
+	position: absolute;
+}
+
+.body-copy p {
+	margin: 0 0 .7em 0;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 300;
+	font-size: clamp(14px, 3.9vw, 16.5px);
+	line-height: 1.5;
+	word-break: keep-all;
+	overflow-wrap: normal;
+	letter-spacing:  -0.02rem;
+}
+
+.photo-object {
+	position: absolute;
+	display: block;
+}
+
+/* --------------------------------------------------------------------------
+   5. SCENE 01 - GUIDE BOOK 표지 (완성)
+   -------------------------------------------------------------------------- */
+.scene01 .s01-logo {
+	position: absolute;
+	top: 8%;
+	left: 40%;
+	width: 20%;
+}
+
+.scene01 .s01-title1 {
+	position: absolute;
+	top: 14.6%;
+	left: 16%;
+	width: 68%;
+}
+
+.scene01 .s01-title2 {
+	position: absolute;
+	top: 18.6%;
+	left: 10%;
+	width: 80%;
+}
+
+.scene01 .s01-button {
+	position: absolute;
+	top: 87%;
+	left: 5%;
+	width: 90%;
+	display: block;
+	line-height: 0;
+}
+
+.scene01 .s01-button img {
+	width: 100%;
+	display: block;
+	filter: drop-shadow(0 4px 10px rgba(0,20,60,.35));
+}
+
+/* carousel-item.play 상태에서 버튼에 자연스러운 pulse(반복 아님, 1회) */
+.scene01 .s01-button:active img {
+	transform: scale(.97);
+}
+
+/* --------------------------------------------------------------------------
+   6. SCENE 02 - Welcome (기본 구조)
+   -------------------------------------------------------------------------- */
+.scene02 .s02-badge {
+	position: absolute;
+	top: 8%;
+	left: 38%;
+	width: 24%;
+}
+
+.scene02 .main-title {
+	top: 25%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #1a1a1a;
+}
+
+.scene02 .body-copy {
+	top: 36%;
+	left: 12%;
+	width: 76%;
+}
+.scene02 .body-copy p {
+	text-align: center;
+	color: #333;
+}
+
+.scene02 .s02-sign {
+	position: absolute;
+	bottom: 26%;
+	left: 25%;
+	width: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   7. SCENE 03 - Only Incar (완성)
+   -------------------------------------------------------------------------- */
+.scene03 .english-title {
+	top: 44.5%;
+	left: 43%;
+	width: 21%;
+}
+
+.scene03 .main-title {
+	top: 48%;
+	left: 11%;
+	width: 84%;
+	text-align: center;
+	color: #000000;
+}
+
+.scene03 .body-copy {
+	top: 53%;
+	left: 16%;
+	width: 78%;
+	text-align: center;
+}
+.scene03 .body-copy p {
+	color: #2b2b2b;
+	font-weight: 300;
+}
+
+.scene03 .photo-object {
+	top: 23%;
+	left: 6%;
+	width: 86%;
+}
+
+/* --------------------------------------------------------------------------
+   8. SCENE 04 - First Morning (기본 구조)
+   -------------------------------------------------------------------------- */
+.scene04 .english-title {
+	top: 13.5%;
+	left: 37%;
+	width: 25%;
+}
+.scene04 .main-title {
+	top: 17%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #16345c;
+}
+.scene04 .body-copy {
+	top: 23.501%;
+	left: 10%;
+	width: 80%;
+	text-align: center;
+}
+.scene04 .body-copy p {
+	color: #26364a;
+}
+
+/* --------------------------------------------------------------------------
+   9. SCENE 05 - Timeless Luxury / Incar Cruise (기본 구조)
+   -------------------------------------------------------------------------- */
+.scene05 .english-title {
+	top: 20%;
+	left: 37%;
+	width: 29%;
+}
+.scene05 .main-title {
+	top: 23.5%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #1a1a1a;
+}
+.scene05 .body-copy {
+	top: 31%;
+	left: 12%;
+	width: 76%;
+	text-align: center;
+}
+.scene05 .body-copy p {
+	color: #333;
+}
+
+/* --------------------------------------------------------------------------
+   10. SCENE 06 - Endless Delight (기본 구조)
+   -------------------------------------------------------------------------- */
+.scene06 .english-title {
+	top: 18%;
+	left: 36%;
+	width: 28%;
+}
+.scene06 .main-title {
+	top: 22%;
+	left: 9%;
+	width: 84%;
+	text-align: center;
+	color: #1a1a1a;
+}
+.scene06 .body-copy {
+	top: 28%;
+	left: 12%;
+	width: 76%;
+	text-align: center;
+}
+.scene06 .body-copy p {
+	color: #333;
+}
+
+/* --------------------------------------------------------------------------
+   11. SCENE 07 - Night Fever (기본 구조, 어두운 배경 -> 밝은 글자)
+   -------------------------------------------------------------------------- */
+.scene07 .english-title {
+	top: 22%;
+	left: 38%;
+	width: 24%;
+}
+.scene07 .main-title {
+	top: 26%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #fff;
+}
+.scene07 .body-copy {
+	top: 32%;
+	left: 12%;
+	width: 76%;
+	text-align: center;
+}
+.scene07 .body-copy p {
+	color: #eaf3ff;
+}
+
+/* --------------------------------------------------------------------------
+   12. SCENE 08 - Lucky Draw (기본 구조)
+   -------------------------------------------------------------------------- */
+.scene08 .english-title {
+	top: 15%;
+	left: 38%;
+	width: 24%;
+}
+.scene08 .main-title {
+	top: 19%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #1a1a1a;
+}
+.scene08 .body-copy {
+	top: 25%;
+	left: 12%;
+	width: 76%;
+	text-align: center;
+}
+.scene08 .body-copy p {
+	color: #333;
+}
+
+/* --------------------------------------------------------------------------
+   13. SCENE 09 - Last Night (기본 구조, 어두운 배경 -> 밝은 글자)
+   -------------------------------------------------------------------------- */
+.scene09 .english-title {
+	top: 27%;
+	left: 38%;
+	width: 23%;
+}
+.scene09 .main-title {
+	top: 30.5%;
+	left: 8%;
+	width: 84%;
+	text-align: center;
+	color: #fff;
+}
+.scene09 .body-copy {
+	top: 37%;
+	left: 11%;
+	width: 78%;
+	text-align: center;
+}
+.scene09 .body-copy p {
+	color: #eef6ff;
+}
+.scene09 .photo-object {
+	top: 58%;
+	left: 6%;
+	width: 90%;
+}
+
+/* --------------------------------------------------------------------------
+   14. SCENE 10 - 달성구간 & 시상 (완성) : 배경 고정 + 내부 세로 스크롤
+   -------------------------------------------------------------------------- */
+
+.scene10 {
+    position: relative;
+    overflow: hidden;
+}
+
+.reward-background {
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/scenes/scene10_background.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.reward-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+
+    padding: 8% 7% 80px;
+    box-sizing: border-box;
+
+    scrollbar-width: none;
+}
+
+.reward-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.reward-background {
+	position: absolute;
+	inset: 0;
+	background-image: url('../images/scenes/scene10_background.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.reward-scroll {
+	position: absolute;
+	inset: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior: contain;
+	touch-action: pan-y; /* 좌우 Swipe는 carousel, 상하는 이 영역이 전담 */
+	padding: 8% 7% 10%;
+	box-sizing: border-box;
+}
+
+.reward-head h2 {
+	margin: 0 0 .3em 0;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 700;
+	font-size: clamp(23px, 6.6vw, 29px);
+	line-height: 1.2;
+	text-align: center;
+	color: #16345c;
+}
+
+.reward-meta {
+	margin: 0 0 5% 0;
+	text-align: center;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 500;
+	font-size: clamp(12px, 3vw, 15px);
+	line-height: 1.6;
+	color: #2a4a73;
+}
+
+.reward-tier {
+	margin-bottom: 6%;
+}
+
+.reward-tier h3 {
+	margin: 0 0 1% 0;
+	text-align: center;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 700;
+	font-size: clamp(18px, 5vw, 19px);
+	color: #16345c;
+}
+
+.reward-table {
+	border-radius: 18px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(20,45,90,.18);
+}
+
+.reward-row {
+	display: flex;
+}
+
+.reward-row .reward-label {
+	flex: 0 0 38%;
+	background: #142d85;
+	color: #fff;
+	padding: 2.2% 3%;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 500;
+	font-size: clamp(12.5px, 3.1vw, 14px);
+	line-height: 1.5;
+	display: flex;
+	align-items: center;
+}
+
+.reward-row .reward-value {
+	flex: 1;
+	background: #f5f8fc;
+	color: #142d85;
+	padding: 2.2% 3%;
+	font-family: 'Arita Dotum KR', serif;
+	font-weight: 600;
+	font-size: clamp(12.5px, 3.1vw, 14px);
+	line-height: 1.5;
+	display: flex;
+	align-items: center;
+}
+
+.reward-row + .reward-row .reward-label,
+.reward-row + .reward-row .reward-value {
+	border-top: 1px solid rgba(20,45,90,.12);
+}
+
+/* scene10_background.jpg 하단에 INCAR 로고/문구가 이미 포함되어 있으므로
+   중복 표기하지 않고, 배경의 로고가 자연스럽게 보이도록 여백만 확보 */
+.reward-foot-spacer {
+	height: 14%;
+}
+
+/* --------------------------------------------------------------------------
+   15. Indicator 10개 대응 (기존 style.css 규칙 위에서 크기만 보정)
+   -------------------------------------------------------------------------- */
+.carousel-indicators [data-bs-target] {
+	width: 6px !important;
+	height: 6px !important;
+	border-radius: 50%;
+	margin: 0 3px !important;
+}
+
+@media screen and (max-width: 767px) {
+	.carousel-indicators [data-bs-target] {
+		width: 7px !important;
+		height: 7px !important;
+	}
+}

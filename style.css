@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+       background: #e6eaed !important;
+       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+       font-size: 35px;
+       margin:0;
+       padding: 15px 0 0 0;
+	   color: #999;
+	   font-family: 'Nanum Gothic' !important;
+    }
+
+.carousel-control-prev, .carousel-control-next {
+	width: 6% !important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+	background-color: rgba(0,0,0,0.2);
+	width: 30px !important;
+	height: 60px !important;
+}
+.carousel-indicators {
+	margin-bottom:1px !important;
+}
+
+.modal {
+	position: absolute !important;
+	left: 50% !important;
+	top:10% !important;
+	height: 50% !important;
+	margin-left:-110px !important;
+}
+
+.modal p {
+	margin-top:10px;
+	font-size: 18px;
+	word-break: keep-all;
+	font-weight: bold;
+	color: #1a1a1a;
+	line-height: 25px;
+}
+
+.modal-content {
+	width: 220px !important;
+	height: 220px !important;
+	border-radius: 500px !important;
+}
+
+.modal-body {
+	text-align: center;
+	padding: 0.8rem;
+}
+
+.modal-header {
+	padding:5px !important;
+}
+
+
+.modal-header .btn-close {
+	padding: 0.7rem 0.5rem;	
+}
+
+.modal-body img {
+	width: 73px;
+}
+
+@media screen and (max-width:767px){ 
+	.carousel-control-prev-icon, .carousel-control-next-icon {background-color: rgba(0,0,0,0.2);width: 60px !important;height: 80px !important;}
+	.carousel-indicators {margin-bottom:7px !important;}
+	body {padding:0 !important;}
+	.modal-content {width: 500px;height: 500px;}
+}
