@@ -6,35 +6,45 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. 로컬 웹폰트 (아리따 부리 KR) - woff2로 변환하여 용량 최적화
+   1. 로컬 웹폰트 (아리따 돋움 KR) - TTF 웹폰트 적용
    -------------------------------------------------------------------------- */
 @font-face {
 	font-family: 'Arita Dotum KR';
-	src: url('../fonts/AritaDotumKR-Light.ttf') format('ttf');
+	src: url('../fonts/AritaDotumKR-Light.ttf') format('truetype');
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Arita Dotum KR';
-	src: url('../fonts/AritaDotumKR-Medium.ttf') format('ttf');
+	src: url('../fonts/AritaDotumKR-Medium.ttf') format('truetype');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Arita Dotum KR';
-	src: url('../fonts/AritaDotumKR-SemiBold.ttf') format('ttf');
+	src: url('../fonts/AritaDotumKR-SemiBold.ttf') format('truetype');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Arita Dotum KR';
-	src: url('../fonts/AritaDotumKR-Bold.ttf') format('ttf');
+	src: url('../fonts/AritaDotumKR-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
+}
+
+/* 전역 폰트 안전장치: 웹폰트 로딩 실패 시에도 고딕 계열로 표시 */
+html,
+body,
+button,
+input,
+textarea,
+select {
+	font-family: 'Arita Dotum KR', sans-serif;
 }
 
 /* --------------------------------------------------------------------------
@@ -141,7 +151,7 @@
 	   렌더링 크기는 min~max px 범위 안에서만 움직인다. */
 	position: absolute;
 	margin: 0;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 600;
 	font-size: clamp(20px, 6vw, 28px);
 	line-height: 1.2;
@@ -156,7 +166,7 @@
 
 .body-copy p , .modal-body{
 	margin: 0 0 .7em 0;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 300;
 	font-size: clamp(14px, 3.9vw, 16.5px);
 	line-height: 1.5;
@@ -448,7 +458,7 @@
 }
 
 .scene10 p{
-    font-family: 'Arita Dotum KR', serif;
+    font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 300;
 	font-size: clamp(14px, 3.9vw, 14.5px);
 	margin-bottom:0.5rem !important;
@@ -511,7 +521,7 @@
 
 .reward-head h2 {
 	margin: 0 0 .3em 0;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 700;
 	font-size: clamp(23px, 6.6vw, 29px);
 	line-height: 1.2;
@@ -522,7 +532,7 @@
 .reward-meta {
 	margin: 0 0 5% 0;
 	text-align: center;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 500;
 	font-size: clamp(12px, 3vw, 15px);
 	line-height: 1.6;
@@ -536,7 +546,7 @@
 .reward-tier h3 {
 	margin: 0 0 1% 0;
 	text-align: center;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 700;
 	font-size: clamp(18px, 5vw, 19px);
 	color: #16345c;
@@ -557,7 +567,7 @@
 	background: #142d85;
 	color: #fff;
 	padding: 2.2% 3%;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 500;
 	font-size: clamp(12.5px, 3.1vw, 14px);
 	line-height: 1.5;
@@ -570,7 +580,7 @@
 	background: #f5f8fc;
 	color: #142d85;
 	padding: 2.2% 3%;
-	font-family: 'Arita Dotum KR', serif;
+	font-family: 'Arita Dotum KR', sans-serif;
 	font-weight: 600;
 	font-size: clamp(12.5px, 3.1vw, 14px);
 	line-height: 1.5;
