@@ -618,3 +618,19 @@ select {
 		height: 7px !important;
 	}
 }
+
+.scene10 .english-title {
+	width: 60%;
+	display: block;
+	position: relative;
+	padding-top:1.5rem;
+	margin:1.2rem auto;
+}
+
+.scene10 h4 {
+	width: 100%;
+	font-family: 'Arita Dotum KR', sans-serif;
+	font-weight: 600;
+	font-size: clamp(14px, 3.9vw, 18px);
+	text-align: center;
+}
