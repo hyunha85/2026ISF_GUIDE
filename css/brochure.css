@@ -244,7 +244,7 @@ select {
 
 .scene02 .body-copy {
 	top: 35.5%;
-	left: 12%;
+	left: 11%;
 	width: 76%;
 }
 .scene02 .body-copy p {
@@ -323,7 +323,7 @@ select {
    -------------------------------------------------------------------------- */
 .scene05 .english-title {
 	top: 19.5%;
-	left: 35%;
+	left: 36.5%;
 	width: 29%;
 }
 .scene05 .main-title {
@@ -360,7 +360,7 @@ select {
 }
 .scene06 .body-copy {
 	top: 20%;
-	left: 11%;
+	left: 10%;
 	width: 81%;
 	text-align: center;
 }
@@ -443,7 +443,7 @@ select {
 	color: #eef6ff;
 }
 .scene09 .photo-object {
-	top: 60%;
+	top: 57%;
 	left: 3%;
 	width: 96%;
 }
