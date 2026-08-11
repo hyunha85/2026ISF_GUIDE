@@ -17,11 +17,24 @@
 
 	function playItem(item) {
 		if (!item) return;
-		// 재방문 시에도 다시 재생되도록, 우선 클래스를 제거했다가 다음 프레임에 다시 부여
-		item.classList.remove('play');
-		// 강제 리플로우로 애니메이션 재시작 보장
-		void item.offsetWidth;
-		item.classList.add('play');
+
+		// 배경이 아직 준비되지 않았다면 글자부터 먼저 뜨지 않도록
+		// 배경 load 완료 후 reveal 애니메이션을 시작한다.
+		var bg = item.querySelector('.scene-bg');
+
+		function startReveal() {
+			item.classList.remove('play');
+			void item.offsetWidth;
+			item.classList.add('play');
+		}
+
+		if (bg && !bg.complete) {
+			item.classList.remove('play');
+			bg.addEventListener('load', startReveal, { once: true });
+			bg.addEventListener('error', startReveal, { once: true });
+		} else {
+			startReveal();
+		}
 	}
 
 	function stopItem(item) {
@@ -51,7 +64,44 @@
 	});
 
 	/* ------------------------------------------------------------------
-	   2. scene10 내부 콘텐츠(2~4구간)만을 위한 IntersectionObserver
+	   2. 다음 장 배경 선로딩
+	      - 기존 lazy loading 때문에 슬라이드가 열린 뒤 배경 요청이 시작되던 문제 해결
+	      - 브로셔 진입 직후 2~10장의 배경을 브라우저 캐시에 미리 올린다.
+	   ------------------------------------------------------------------ */
+	var sceneBackgrounds = carouselEl.querySelectorAll('.scene-bg');
+	sceneBackgrounds.forEach(function (img, index) {
+		if (index === 0) return;
+		var preload = new Image();
+		preload.decoding = 'async';
+		preload.src = img.currentSrc || img.src;
+	});
+
+	/* ------------------------------------------------------------------
+	   3. 모바일 좌우 Swipe 복원
+	      - ZIP에 포함돼 있었지만 사용되지 않던 jquery.touchSwipe.js를 실제 연결
+	      - Bootstrap 기본 touch는 HTML에서 꺼서 중복 이동을 방지
+	      - 위/아래 스크롤은 그대로 허용하고 좌/우 제스처만 페이지 전환에 사용
+	   ------------------------------------------------------------------ */
+	if (window.jQuery && window.jQuery.fn && window.jQuery.fn.swipe) {
+		var $carousel = window.jQuery(carouselEl);
+		var carousel = bootstrap.Carousel.getOrCreateInstance(carouselEl, {
+			touch: false,
+			interval: false,
+			wrap: true
+		});
+
+		$carousel.swipe({
+			swipeLeft: function () { carousel.next(); },
+			swipeRight: function () { carousel.prev(); },
+			threshold: 35,
+			allowPageScroll: 'vertical',
+			fingers: 'all',
+			excludedElements: 'button, input, select, textarea, .noSwipe'
+		});
+	}
+
+	/* ------------------------------------------------------------------
+	   4. scene10 내부 콘텐츠(2~4구간)만을 위한 IntersectionObserver
 	      - 1~9 페이지는 절대 사용하지 않음 (Bootstrap 이벤트 기반 유지)
 	   ------------------------------------------------------------------ */
 	var rewardScroll = document.querySelector('.scene10 .reward-scroll');
@@ -75,7 +125,7 @@
 	}
 
 	/* ------------------------------------------------------------------
-	   3. scene10 좌우 Swipe(Carousel) vs 상하 Scroll(reward-scroll) 충돌 방지
+	   5. scene10 좌우 Swipe(Carousel) vs 상하 Scroll(reward-scroll) 충돌 방지
 	      - 기존 Bootstrap 내장 스와이프 로직은 그대로 둔다.
 	      - 세로 스크롤 의도가 뚜렷할 때만 이벤트 버블링을 막아
 	        Carousel이 오작동으로 페이지를 넘기지 않도록 최소한으로 보정한다.

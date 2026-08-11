@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta property="og:image" content="images/scenes/scene01_background.jpg">
-<title>INCAR ISF 2026</title>
+<title>2026 ISF GUIDE</title>
+
+<!-- 첫 화면과 다음 장 배경을 최우선으로 미리 받아 텍스트보다 늦게 뜨는 현상을 줄임 -->
+<link rel="preload" as="image" href="images/scenes/scene01_background.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/scenes/scene02_background.jpg">
+<link rel="preload" as="image" href="images/scenes/scene03_background.jpg">
 
 <!-- Same base stylesheets as ver_3 -->
 <link rel="stylesheet" href="style.css">
@@ -24,13 +29,13 @@
 		  </div>
 		  <div class="modal-body">
 			<img src="images/hand.svg" alt="">
-			  <p>좌우로 슬라이드하면 화면이 전환됩니다.</p>
+			  <p>좌우로 슬라이드하면 화면이 전환됩니다</p>
 		  </div>
 		</div>
 	  </div>
 	</div>
 
-	<div id="carouselExampleIndicators" class="carousel slide col-lg-3 col-md-12 mx-auto" data-bs-ride="carousel">
+	<div id="carouselExampleIndicators" class="carousel slide col-lg-3 col-md-12 mx-auto" data-bs-ride="carousel" data-bs-touch="false">
 
 		<div class="carousel-indicators">
 			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -52,7 +57,7 @@
 			     ===================================================== -->
 			<div class="carousel-item active brochure-scene scene01" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene01_background.jpg" class="scene-bg" alt="">
+				<img src="images/scenes/scene01_background.jpg" class="scene-bg" loading="eager" fetchpriority="high" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -96,7 +101,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene02" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene02_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene02_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -107,23 +112,23 @@
 						alt="INCAR ISF SUMMER FESTIVAL">
 
 					<!-- 임시 한글 카피 (최종 문구 확정 전까지 사용) -->
-					<h2 class="main-title reveal" style="--delay:.35s;">
+					<h2 class="main-title reveal" style="--delay:.5s;">
 						위대한 항해에<br>오신 것을 환영합니다
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.0s;">
 							인카 ISF는<br> 
 							매년 5천여명이 목표를 달성하고<br>
 							그 중 3천여명이 특별한 여행을 경험합니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.5s;">
 							누구나 도전할 수 있고, 함께 성취해나가는 ISF.<br>
 							혼자만의 성공을 넘어 <br>
 			                모두가 하나 되는 축제이기에,<br>
 							인카에서 가장 특별한 무대입니다.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:1.5s;">
 							이 가이드북과 함께 여정을 시작해보시죠!
 						</p>
 					</div>
@@ -131,7 +136,7 @@
 					<img
 						src="images/scenes/scene02_captainSign.svg"
 						class="s02-sign reveal"
-						style="--delay:1.35s;"
+						style="--delay:2.0s;"
 						alt="빛나는 항해가 되길! Captain.">
 
 				</div>
@@ -143,43 +148,42 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene03" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene03_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene03_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
 					<img
+						src="images/scenes/scene03_photo.png"
+						class="photo-object reveal-object"
+						style="--delay:.1s;"
+						alt="2023, 2024 ISF / 2026 ISF">
+
+					<img
 						src="images/scenes/scene03_title_onlyIncar.svg"
 						class="english-title reveal"
-						style="--delay:.1s;"
+						style="--delay:.5s;"
 						alt="Only Incar">
 
-					<h2 class="main-title reveal" style="--delay:.3s;">
+					<h2 class="main-title reveal" style="--delay:.7s;">
 						인카만이 가능한 스케일
 					</h2>
 
-					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+					<div class="body-copy" >
+						<p class="reveal" style="--delay:1.2s;">
 							2년 연속,<br>
 							인카 가족만을 위한 전세기.<br>
 							그리고 2026년, 초대형 단독 크루즈.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.9s;">
 							전세기에 이어, 크루즈 한 척을<br>
 							오롯이 채우는 ISF 스케일.<br>
 							인카만이 가능한 규모와 실행력입니다.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.6s;">
 							2만 5천 명의 도전을 믿기에,<br>
 							인카는 오늘도 더 큰 무대를<br> 준비했습니다.
 						</p>
 					</div>
-
-					<img
-						src="images/scenes/scene03_photo.png"
-						class="photo-object reveal-object"
-						style="--delay:1.4s;"
-						alt="2023, 2024 ISF / 2026 ISF">
-
 				</div>
 
 			</div>
@@ -189,7 +193,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene04" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene04_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene04_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -205,17 +209,17 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							승객 여러분, 현재 인카크루즈는<br>
 							푸른 동해를 따라 순항하고 있습니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							우리는 곧 가장 먼저 떠오르는<br>
 							아침을 맞이할 예정입니다.<br>
 							쉽게 닿기 어려운 독도를 눈앞에 두고,<Br>
 							수평선 위로 번지는 첫 빛을 함께 바라보는 이순간.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.5s;">
 							이 아름다운 아침이<br>
 							인카가족 마음속에 오래도록 머물기를 바랍니다.
 						</p>
@@ -230,7 +234,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene05" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene05_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene05_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -246,16 +250,16 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							지금부터는 여러분과 함께할<br>
 							크루즈를 소개해 드리겠습니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							핀란드에서 건조된 크루즈, <br>아도라 메디테라니아호는<br>
 							17세기 이탈리아 궁정 양식을 현대적으로 재해석한<br>
 							우아하고 품격 있는 공간을 선보입니다.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.5s;">
 							끝없이 펼쳐진 바다를 바라보며 누리는 휴식.<br>
 							그리고 선내 스파,마사지로 채우는 온전한 힐링까지.<br>
 							일상에서 쉽게 만날 수 없는<br>
@@ -272,7 +276,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene06" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene06_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene06_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -288,15 +292,15 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							또 항해 중에는 크루즈 곳곳에서 준비된<br>
 							다양한 프로그램을 자유롭게 즐기실 수 있습니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							세계 각국의 미식과 면세 쇼핑, 카지노,<br>
 							노래자랑과 함께 어울리는 참여형 프로그램까지.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.5s;">
 							목적지에 닿는 순간까지,<br>
 							새로운 즐거움은 계속됩니다.
 						</p>
@@ -311,7 +315,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene07" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene07_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene07_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -327,16 +331,16 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							해가 저물면<br>
 							인카크루즈의 또 다른 무대가 시작됩니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							오직 ISF만을 위해 준비된<br>
 							유명 초청가수와 DJ의 무대를 비롯해<br>
 							라이브 예술쇼까지!
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.5s;">
 							평범한 일상을 벗어나 더 화려하고 자유롭게!<br>
 							오늘 밤의 주인공은 바로 당신입니다.
 						</p>
@@ -351,7 +355,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene08" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene08_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene08_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -367,16 +371,16 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							아직 끝나지 않았습니다.<br>
 							ISF의 하이라이트, 최고의 성과를 이룬 인카가족을 위한<br>
 							수억 원 규모의 럭키드로우가 기다리고 있습니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							천만 원대 명품 가방부터 프리미엄 워치까지,<br>
 							높은 구간을 달성할수록 추첨 기회도 많아집니다.
 						</p>
-						<p class="reveal" style="--delay:1.1s;">
+						<p class="reveal" style="--delay:2.5s;">
 							당신의 이름이 불리는 순간을 상상해보세요.<br>
 							기다림이 짜릿한 환호로 바뀌는 그 순간을!
 						</p>
@@ -391,7 +395,7 @@
 			     ===================================================== -->
 			<div class="carousel-item brochure-scene scene09" data-bs-interval="1000000000">
 
-				<img src="images/scenes/scene09_background.jpg" class="scene-bg" loading="lazy" alt="">
+				<img src="images/scenes/scene09_background.jpg" class="scene-bg" loading="eager" fetchpriority="low" decoding="async" alt="">
 
 				<div class="scene-copy">
 
@@ -407,21 +411,21 @@
 					</h2>
 
 					<div class="body-copy">
-						<p class="reveal" style="--delay:.6s;">
+						<p class="reveal" style="--delay:1.1s;">
 							ISF의 마지막 밤은<br> 여행의 즐거움을 넘어,<br>
 							도움이 필요한 이웃과 따뜻한 마음을 나누는<br>
 							기부를 이어왔습니다.
 						</p>
-						<p class="reveal" style="--delay:.85s;">
+						<p class="reveal" style="--delay:1.8s;">
 							우리가 지나간 곳에 희망이 싹트는 것.<br>
-							그것이 인카가 여행을 완성하는 방식입니다.
+							그것이 인카가 여행을 완성하는<br> 방식입니다.
 						</p>
 					</div>
 
 					<img
 						src="images/scenes/scene09_photo.png"
 						class="photo-object reveal-object"
-						style="--delay:1.1s;"
+						style="--delay:2.5s;"
 						alt="2024년 3천만원 기부 / 2025년 3천만원 기부">
 
 				</div>
@@ -438,15 +442,15 @@
 				<div class="reward-scroll">
 
 					<div class="reward-head">
-						<h2 class="reveal" style="--delay:.1s;">
+						<h2>
 							ISF도전,<br>인카가 진심으로 응원합니다
 						</h2>
-						<p class="reward-meta reveal" style="--delay:.3s;">
+						<p class="reward-meta" >
 							· 시상기간 : 2026.07.01 – 2026.09.31
 						</p>
 					</div>
 
-					<section class="reward-tier reveal" style="--delay:.45s;">
+					<section class="reward-tier">
 						<h3>1구간</h3>
 						<div class="reward-table">
 							<div class="reward-row">
@@ -550,6 +554,11 @@
 						</div>
 					</section>
 
+					 <p>*ISF 달성자 중 여행 불참 또는 여행 진행이 불가 시 1인당 140만원 현금대체 시상 </p>
+					 <p>*단, 13회차 유지 평가 후 최종 지급구간 및 지급여부 확정</p>
+					 <p>*인정비율 및 자세한내용은 IIMS 공지사항 참조</p>
+					 
+
 					<!-- 하단 INCAR 로고/문구는 scene10_background.jpg 안에
 					     이미 포함되어 있어 별도로 추가하지 않음(중복 방지).
 					     스크롤 여백만 확보. -->
@@ -573,6 +582,7 @@
 	</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/brochure.js"></script>
 <script>
